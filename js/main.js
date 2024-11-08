@@ -1,8 +1,8 @@
 // ------------------------------ 1. VARIABLES GLOBALES ------------------------------
 let tarifasJSON = null;
 let gastosJSON = null;
-let tarifasJSONpath = '';
-let gastosJSONpath = '';
+let tarifasJSONpath = 'js/tarifasCombustible.json';
+let gastosJSONpath =  'js/gastosCombustible.json';
 
 // ------------------------------ 2. CARGA INICIAL DE DATOS (NO TOCAR!) ------------------------------
 // Esto inicializa los eventos del formulario y carga los datos iniciales
@@ -58,6 +58,50 @@ function calcularGastoTotal() {
         2018: 0,
         2019: 0,
         2020: 0
+    }
+
+    for(let i=0;i<gastosJSON.length;i++){
+        let fecha = new Date(Date.parse(gastosJSON[i].date));
+        console.log("f: "+fecha);
+        console.log(typeof fecha);
+        switch(fecha.getFullYear()){
+            case 2010:
+                aniosArray[2010] += gastosJSON[i].precioViaje;
+                break;
+            case 2011:
+                aniosArray[2011] += gastosJSON[i].precioViaje;
+                break;
+            case 2012:
+                aniosArray[2012] += gastosJSON[i].precioViaje;
+                break;
+            case 2013:
+                aniosArray[2013] += gastosJSON[i].precioViaje;
+                break;
+            case 2014:
+                aniosArray[2014] += gastosJSON[i].precioViaje;
+                break;
+            case 2015:
+                aniosArray[2015] += gastosJSON[i].precioViaje;
+                break;
+            case 2016:
+                aniosArray[2016] += gastosJSON[i].precioViaje;
+                break;
+            case 2017:
+                aniosArray[2017] += gastosJSON[i].precioViaje;
+                break;
+            case 2018:
+                aniosArray[2018] += gastosJSON[i].precioViaje;
+                break;
+            case 2019:
+                aniosArray[2019] += gastosJSON[i].precioViaje;
+                break;
+            case 2020:
+                aniosArray[2020] += gastosJSON[i].precioViaje;
+        }
+    }
+
+    for(let anyo=2010;anyo<=2020;anyo++){
+        document.getElementById("gasto"+anyo).textContent = aniosArray[anyo].toFixed(2);
     }
 }
 

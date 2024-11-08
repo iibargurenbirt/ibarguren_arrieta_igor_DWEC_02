@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Costos de Combustible - Correos</title>
+   
 </head>
 <body>
     <header>
@@ -24,7 +25,7 @@
                 </select>
 
                 <label for="date">Fecha del Gasto:</label>
-                <input type="date" id="date" name="date" required>
+                <input type="date" id="date" name="date" min="2010-01-01" max="2020-12-31" required>
 
                 <label for="kilometers">Kilómetros Recorridos:</label>
                 <input type="number" id="kilometers" name="kilometers" min="0" required>
@@ -66,6 +67,6 @@
             
         </section>
     </main>
-
+    <script src="js/main.js"/>
 </body>
 </html>
