@@ -1,3 +1,8 @@
+// 0. IMPORTS
+
+import GastoCombustible from "./GastoCombustible.js";
+
+
 // ------------------------------ 1. VARIABLES GLOBALES ------------------------------
 let tarifasJSON = null;
 let gastosJSON = null;
@@ -62,8 +67,7 @@ function calcularGastoTotal() {
 
     for(let i=0;i<gastosJSON.length;i++){
         let fecha = new Date(Date.parse(gastosJSON[i].date));
-        console.log("f: "+fecha);
-        console.log(typeof fecha);
+
         switch(fecha.getFullYear()){
             case 2010:
                 aniosArray[2010] += gastosJSON[i].precioViaje;
@@ -113,5 +117,16 @@ function guardarGasto(event) {
     const tipoVehiculo = document.getElementById('vehicle-type').value;
     const fecha = new Date(document.getElementById('date').value);
     const kilometros = parseFloat(document.getElementById('kilometers').value);
+
+    let anyo = new Date(Date.parse(fecha)).getFullYear();
+    let tarifaAnyo = tarifasJSON.tarifas[2020 - anyo];
+    
+    let gasto = new GastoCombustible(tipoVehiculo, fecha, kilometros, tarifaAnyo.vehiculos[tipoVehiculo] * kilometros);
+
+    gastosJSON.push(gasto);
+    calcularGastoTotal(); 
+    
+    document.getElementById("expense-list").innerHTML += "<li>"+gasto.convertToJSON()+"</li>"; 
+    document.getElementById("fuel-form").reset();
 }
 
